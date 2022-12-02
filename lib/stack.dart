@@ -2,7 +2,7 @@ import 'package:dart_constructure/node.dart';
 
 excuteStack(){
   print('================STACK===============');
-  var stack = StackCustom<int>(5);
+  var stack = StackCustom<int>();
   var list = [1,2,3,4,5,6,7,8,9];
   
   for(final num in list){
@@ -12,11 +12,11 @@ excuteStack(){
   printStack(stack);
   
   print('\nELEMENT POP OUT STACK: ');
-  for(var i = 0; i< list.length; i++){
-    var itemPop = stack.pop();
-    print('Pop item $i: $itemPop');
-  }
-
+  // for(var i = 0; i< list.length; i++){
+  //   var itemPop = stack.pop();
+  //   print('Pop item $i: $itemPop');
+  // }
+  stack.popAll();
 
   print('================END STACK===============');
 }
@@ -26,33 +26,28 @@ printStack(stack){
   var top = stack.top;
   print(top?.key);
 
-  while(top?.next != null){
-    top = top?.next;
+  while(top?.prev != null){
+    top = top?.prev;
     print(top?.key);
   }
   print('-------------------');
 }
 
 class StackCustom<T>{
-  final int size;
-  StackCustom(this.size);
+  StackCustom();
 
-  Node<T>? top;
+  NodeStack<T>? top;
 
-  isFull(){
-    
-  }
-  
   push(T key){
-    top ??= Node<T>();
+    top ??= NodeStack<T>();
     
     if(top?.key == null){
       top?.key = key;
       return;
     }else{
-      var newNode = Node<T>();
+      var newNode = NodeStack<T>();
       newNode.key = key;
-      newNode.next = top;
+      newNode.prev = top;
       top = newNode;
     }
   }
@@ -61,18 +56,36 @@ class StackCustom<T>{
     dynamic popItem;
     if(top == null) return;
     
-    if(top?.key != null) {
-      popItem = top?.key;
-    }else{
-      return;
-    } 
+    if(top?.key == null) return;
 
-    if(top?.next != null){
-      top = top?.next;
+    popItem = top?.key;
+
+    if(top?.prev != null){
+      top = top?.prev;
     }else{
       top = null;
     }
+    print('PopItem: $popItem');
     return popItem;
+  }
+
+  popAll(){
+    dynamic popItem;
+    if(top == null) return;
+
+    if(top?.key == null) return;
+
+    popItem = top?.key;
+
+    if(top?.prev != null){
+      top = top?.prev;
+    }else{
+      top = null;
+    }
+
+    print('PopItem: $popItem');
+    
+    popAll();
   }
 }
 

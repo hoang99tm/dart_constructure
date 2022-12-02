@@ -11,37 +11,37 @@ excuteQueue(){
 
   printQueue(queue);
 
-  for(final num in list){
-    var dequeue = queue.pop();
-    print('DEQUEUE $num: $dequeue');
-  }
+  queue.remove();
+  printQueue(queue);
+  queue.remove();
+  printQueue(queue);
   print('================END QUEUE===============');
 }
 
 printQueue(queue){
   print('-------QUEUE-------');
-  var node = queue.first;
+  var node = queue.last;
   print(node?.key);
 
-  while(node?.next != null){
-    node = node?.next;
+  while(node?.prev != null){
+    node = node?.prev;
     print(node?.key);
   }
   print('-------------------');
 }
 
+/** QUEUE CUSTOM */
 class QueueCustom<T>{
-  Node<T>? first;
+  // Node<T>? first;
   Node<T>? last;
 
   push(T key){
     // check queue co node chua
-    first ??= Node<T>();
+    last ??= Node<T>();
 
     // neu queue rong
-    if(first?.key == null){
-      first?.key = key;
-      last = first;
+    if(last?.key == null){
+      last?.key = key;
       return;
     }
     //neu queue ko rong, them node last
@@ -51,27 +51,28 @@ class QueueCustom<T>{
       newNode.key = key;
       // newNode.next = Node<T>();
       last?.next = newNode;
+      newNode.prev = last;
       last = newNode;
     }
   }
 
-  pop(){
-    dynamic dequeueItem;
+  remove(){
+    pop(last);
+  }
 
-    if(first == null) return;
-    
-    if(first?.key != null){
-      dequeueItem = first?.key;
-    }else{
+  pop(Node<T>? node){
+    var tmp = node?.prev;
+
+    if(tmp == null){
+      print('TMP NULL');
+      node = node?.next;
       return;
     }
-
-    if(first?.next != null){
-      first = first?.next;
-    }else{
-      first = null;
+    
+    if(tmp.prev == null){
+      node?.prev = null;
+      return;
     }
-
-    return dequeueItem;
+    pop(node?.prev);
   }
 }
