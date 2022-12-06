@@ -1,8 +1,8 @@
-import 'package:dart_constructure/sort.dart';
+
+import 'package:dart_constructure/algorithms/sort.dart';
 
 executeMergeSort(){
   var list = [20, 43, 12, 54, 32, 1, 6, 19, 32];
-  print('Size list: ${list.length}');
 
   CustomSort cs = CustomSort();
   var rs = cs.mergeSort(list);

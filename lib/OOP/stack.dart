@@ -1,4 +1,4 @@
-import 'package:dart_constructure/node.dart';
+import 'node.dart';
 
 excuteStack(){
   print('================STACK===============');

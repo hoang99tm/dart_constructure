@@ -1,4 +1,4 @@
-import 'package:dart_constructure/sort.dart';
+import '../algorithms/sort.dart';
 
 executeInterpolationSearch(){
   List list = [20,4,6,2,1,7,8,4,15,9,10,3,12];

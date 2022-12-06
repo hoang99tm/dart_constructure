@@ -1,12 +1,9 @@
 import 'dart:io';
 
-import 'package:dart_constructure/binary_search.dart';
-import 'package:dart_constructure/interpolation_search.dart';
-import 'package:dart_constructure/linear_search.dart';
-import 'package:dart_constructure/map.dart';
-import 'package:dart_constructure/merge_sort.dart';
-import 'package:dart_constructure/queue.dart';
-import 'package:dart_constructure/stack.dart';
+import 'package:dart_constructure/OOP/binary_search.dart';
+import 'package:dart_constructure/OOP/interpolation_search.dart';
+import 'package:dart_constructure/algorithms/merge_sort.dart';
+
 void main(List<String> arguments) {
   // excuteStack();
   // excuteQueue();
