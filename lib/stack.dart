@@ -16,7 +16,8 @@ excuteStack(){
   //   var itemPop = stack.pop();
   //   print('Pop item $i: $itemPop');
   // }
-  stack.popAll();
+  stack.removeAll();
+  printStack(stack);
 
   print('================END STACK===============');
 }
@@ -51,41 +52,38 @@ class StackCustom<T>{
       top = newNode;
     }
   }
+
+  removeAll(){
+    pop(top);
+  }
   
-  pop(){
-    dynamic popItem;
-    if(top == null) return;
-    
-    if(top?.key == null) return;
-
-    popItem = top?.key;
-
-    if(top?.prev != null){
-      top = top?.prev;
-    }else{
-      top = null;
-    }
-    print('PopItem: $popItem');
-    return popItem;
-  }
-
-  popAll(){
-    dynamic popItem;
+  pop(NodeStack<T>? node){
     if(top == null) return;
 
     if(top?.key == null) return;
 
-    popItem = top?.key;
-
-    if(top?.prev != null){
-      top = top?.prev;
-    }else{
-      top = null;
-    }
-
-    print('PopItem: $popItem');
-    
-    popAll();
+    top = node?.prev;
+      
+    pop(node?.prev);
   }
+
+  // popAll(){
+  //   dynamic popItem;
+  //   if(top == null) return;
+
+  //   if(top?.key == null) return;
+
+  //   popItem = top?.key;
+
+  //   if(top?.prev != null){
+  //     top = top?.prev;
+  //   }else{
+  //     top = null;
+  //   }
+
+  //   print('PopItem: $popItem');
+    
+  //   popAll();
+  // }
 }
 
